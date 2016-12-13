@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Repositories\TaskRepository;
 use App\Task;
 use App\Transformers\TaskTransformer;
+use App\User;
 use Auth;
 use Gate;
 use Illuminate\Http\Request;
@@ -43,6 +44,11 @@ class TasksController extends Controller
      */
     public function index(Request $request)
     {
+//        $user = Auth::user();
+//        if($user->can('show') Task::class ){
+//
+//        }
+
         $tasks = Task::paginate(15);
         return $this->generatePaginatedResponse($tasks, ['propietari' => 'Sergi Tur']);
     }
@@ -108,7 +114,8 @@ class TasksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $task = Task::findOrFail($id);
+        $this->authorize('update', $task);
     }
 
     /**
