@@ -18,6 +18,15 @@ Gate::define('update-task',function($user, $task){
     return $user->id == $task->user_id;
 });
 
+Gate::define('update-task1',function($user){
+    return $user->isAdmin();
+});
+
+Gate::define('update-task2',function($user, $task){
+    if ($user->isAdmin()){return true;}
+    return $user->id == $task->user_id;
+});
+
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/tasks', function () {
         return view('tasks');
