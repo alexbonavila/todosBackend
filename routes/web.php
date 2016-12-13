@@ -31,7 +31,7 @@ Gate::define('update-task3',function($user, $task){
     return $user->id == $task->user_id;
 });
 
-Gate::define('show-tasks',function($user, $task){
+Gate::define('show-tasks',function($user){
     return true;
 });
 

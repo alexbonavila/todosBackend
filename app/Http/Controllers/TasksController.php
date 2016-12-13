@@ -44,11 +44,10 @@ class TasksController extends Controller
     public function index(Request $request)
     {
         if(Gate::allows('show-tasks')){
-            $tasks = Task::paginate(15);
-
-            return $this->generatePaginatedResponse($tasks, ['propietari' => 'Sergi Tur']);
+            abort(403);
         }
-        abort(403);
+        $tasks = Task::paginate(15);
+        return $this->generatePaginatedResponse($tasks, ['propietari' => 'Sergi Tur']);
     }
 
     /**
