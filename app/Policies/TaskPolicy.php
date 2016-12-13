@@ -19,7 +19,10 @@ class TaskPolicy
      */
     public function show(User $user, Task $task)
     {
-        return true;
+        if($user->hasRole('admin')){
+            return true;
+        }
+        return false;
     }
 
     /**
