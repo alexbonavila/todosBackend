@@ -8,7 +8,7 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 
 class TaskPolicy
 {
-    use HandlesAuthorization;
+    use HandlesAuthorization,HasAdmin;
 
     /**
      * Determine whether the user can view the task.
