@@ -42,6 +42,9 @@ class TasksController extends Controller
      */
     public function index(Request $request)
     {
+        if (isUserAuthorized()) {
+
+
 //        abort(500);
         // No metadata
         // Pagination
@@ -50,6 +53,8 @@ class TasksController extends Controller
         $tasks = Task::paginate(15);
 
         return $this->generatePaginatedResponse($tasks, ['propietari' => 'Sergi Tur']);
+        }
+        return "Forbiden 403";
     }
 
     /**
