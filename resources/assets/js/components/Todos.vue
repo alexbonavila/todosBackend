@@ -50,21 +50,24 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr v-for="(todo, index) in filteredTodos">
-                        <todo></todo>
-                        <td>{{index + from }}</td>
-                        <td><span v-if="editing">{{todo.name}}</span>
-                            <span v-else><input v-model="todo.name"></span>
-                             </td>
-                        <td>{{todo.priority}}</td>
-                        <td>{{todo.done}}</td>
-                        <td>
-                            <div class="progress progress-xs">
-                                <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                            </div>
-                        </td>
-                        <td><span class="badge bg-red">55%</span></td>
-                    </tr>
+                        <todo v-for="(todo, index) in filteredTodos"
+                              v-bind:todo="todo"
+                              v-bind:index="index"
+                              v-bind:from="from"></todo>
+                        <!--<tr>-->
+                        <!--<td>{{index + from }}</td>-->
+                        <!--<td><span v-if="editing">{{todo.name}}</span>-->
+                            <!--<span v-else><input v-model="todo.name"></span>-->
+                             <!--</td>-->
+                        <!--<td>{{todo.priority}}</td>-->
+                        <!--<td>{{todo.done}}</td>-->
+                        <!--<td>-->
+                            <!--<div class="progress progress-xs">-->
+                                <!--<div class="progress-bar progress-bar-danger" style="width: 55%"></div>-->
+                            <!--</div>-->
+                        <!--</td>-->
+                        <!--<td><span class="badge bg-red">55%</span></td>-->
+                        <!--</tr>-->
                     </tbody>
 
                 </table>
@@ -94,7 +97,7 @@ import Pagination from './Pagination.vue'
 import Todo from './Todo.vue'
 
 export default {
-    components : { Pagination },
+    components : { Pagination, Todo },
     data() {
         return {
             todos: [],
