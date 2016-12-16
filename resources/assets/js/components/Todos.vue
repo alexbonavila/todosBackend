@@ -50,10 +50,11 @@
                     </tr>
                     </thead>
                     <tbody>
-                        <todo v-for="(todo, index) in filteredTodos"
-                              v-bind:todo="todo"
-                              v-bind:index="index"
-                              v-bind:from="from"></todo>
+                    <todo v-for="(todo, index) in filteredTodos"
+                          v-bind:todo="todo"
+                          v-bind:index="index"
+                          v-bind:from="from"
+                          @todo-deleted="deleteTodo"></todo>
                         <!--<tr>-->
                         <!--<td>{{index + from }}</td>-->
                         <!--<td><span v-if="editing">{{todo.name}}</span>-->

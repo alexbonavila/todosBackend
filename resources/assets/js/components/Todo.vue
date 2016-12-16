@@ -4,8 +4,11 @@
 <template>
     <tr>
         <td>{{index + from }}</td>
-        <td><span>{{todo.name}}</span>
-            <input v-model="todo-name" v-show="editing"><i class="fa fa-fw fa-edit" v-show="!editing" @onClick="">A</i>
+        <td>
+            <template v-if="!editing">
+                <span @dblclick="edit">{{todo.name}}</span>
+            </template>
+            <input v-model="todo.name" v-show="editing" @keyup.esc="unedit" @keyup.enter="save"> <i class="fa fa-fw fa-edit" v-show="!editing" @click="edit"></i> <i class="fa fa-fw fa-check" @click="save" v-show="editing"></i> <i class="fa fa-fw fa-close" v-show="editing" @click="unedit"></i>
         </td>
         <td>{{todo.priority}}</td>
         <td>{{todo.done}}</td>
@@ -15,38 +18,48 @@
             </div>
         </td>
         <td><span class="badge bg-red">55%</span></td>
+        <td>
+            <span class="btn btn-md btn-info">
+                <i class="fa fa-fw fa-edit" @click="edittodo"></i>
+            </span>
+            <span class="btn btn-md btn-danger">
+                <i class="fa fa-fw fa-trash" @click="deletetodo(index)"></i>
+            </span>
+        </td>
     </tr>
 </template>
 <script>
 
-import Pagination from './Pagination.vue'
-
 export default {
-
-    props: ['todo', 'index', 'form'],
-    components : { Pagination },
+    props: ['todo','index','from'],
     data() {
         return {
             editing: false
         }
     },
-
     created() {
-        console.log('Component todolist created.');
+        console.log('Component todo created.');
     },
     methods: {
-         hello : function (){
-                console.log('Hello);
-            },
-         edit : function(){
+        hello: function() {
+            console.log('hello');
+        },
+        edit: function() {
+            this.editing=true;
+        },
+        unedit: function() {
             this.editing=false;
-            },
-         unedit : function(){
+        },
+        save: function() {
             this.editing=false;
-            },
-         save : function(){
-            this.editing=false;
-            }
+        },
+        edittodo: function() {
+            console.log('todo editing');
+        },
+        deletetodo: function(index) {
+            console.log('todo deleting');
+            this.$emit('todo-deleted',index);
+        },
     }
 }
 </script>
