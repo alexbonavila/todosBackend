@@ -51,6 +51,7 @@
                     </thead>
                     <tbody>
                     <tr v-for="(todo, index) in filteredTodos">
+                        <todo></todo>
                         <td>{{index + from }}</td>
                         <td><span v-if="editing">{{todo.name}}</span>
                             <span v-else><input v-model="todo.name"></span>
@@ -90,6 +91,7 @@
 <script>
 
 import Pagination from './Pagination.vue'
+import Todo from './Todo.vue'
 
 export default {
     components : { Pagination },
